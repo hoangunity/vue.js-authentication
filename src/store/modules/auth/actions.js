@@ -15,12 +15,13 @@ export default {
   },
   async auth(context, payload) {
     const mode = payload.mode;
-    let url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAaC0ffP4g3K7gXFANNiEBM5W-V8kmmJ2I`;
+    let url =
+      'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAaC0ffP4g3K7gXFANNiEBM5W-V8kmmJ2I';
 
     if (mode === 'signup') {
-      url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAaC0ffP4g3K7gXFANNiEBM5W-V8kmmJ2I`;
+      url =
+        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAaC0ffP4g3K7gXFANNiEBM5W-V8kmmJ2I';
     }
-
     const response = await fetch(url, {
       method: 'POST',
       body: JSON.stringify({
@@ -33,9 +34,8 @@ export default {
     const responseData = await response.json();
 
     if (!response.ok) {
-      console.log(responseData);
       const error = new Error(
-        responseData.message || 'Failed to Authenticate. Check your login data.'
+        responseData.message || 'Failed to authenticate. Check your login data.'
       );
       throw error;
     }
